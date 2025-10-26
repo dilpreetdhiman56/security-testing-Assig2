@@ -1,4 +1,4 @@
-name: Bandit Scan
+name: Bandit Security Scan
 
 on:
   push:
@@ -16,15 +16,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Run Bandit Scan
+        uses: shundor/bandit-action@v1
         with:
-          python-version: '3.11'
+          path: "."
+          level: high
+          confidence: high
+          exit_zero: true
 
-      - name: Bandit Scan
-        uses: shundor/python-bandit-scan@v1.0
-
-      - name: Upload Bandit results
+      - name: Upload Bandit results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
