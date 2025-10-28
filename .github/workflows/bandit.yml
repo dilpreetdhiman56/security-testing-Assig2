@@ -23,8 +23,3 @@ jobs:
           level: high
           confidence: high
           exit_zero: true
-
-      - name: Upload Bandit results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: results.sarif
